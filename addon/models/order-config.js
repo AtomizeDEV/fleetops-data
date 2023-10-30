@@ -1,4 +1,4 @@
-import ExtensionModel from '@fleetbase/console/models/extension';
+import ExtensionModel from '@atomizedev/console/models/extension';
 import { attr } from '@ember-data/model';
 
 export default class OrderConfigModel extends ExtensionModel {

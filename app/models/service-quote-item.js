@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/models/service-quote-item';
+export { default } from '@atomizedev/fleetops-data/models/service-quote-item';

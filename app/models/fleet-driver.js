@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/models/fleet-driver';
+export { default } from '@atomizedev/fleetops-data/models/fleet-driver';

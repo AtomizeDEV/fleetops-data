@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/models/purchase-rate';
+export { default } from '@atomizedev/fleetops-data/models/purchase-rate';

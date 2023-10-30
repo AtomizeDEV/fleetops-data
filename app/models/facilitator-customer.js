@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/models/facilitator-customer';
+export { default } from '@atomizedev/fleetops-data/models/facilitator-customer';

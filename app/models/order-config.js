@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/models/order-config';
+export { default } from '@atomizedev/fleetops-data/models/order-config';

@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/utils/geojson/calculate-bounds';
+export { default } from '@atomizedev/fleetops-data/utils/geojson/calculate-bounds';

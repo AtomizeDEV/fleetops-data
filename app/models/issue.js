@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/models/issue';
+export { default } from '@atomizedev/fleetops-data/models/issue';

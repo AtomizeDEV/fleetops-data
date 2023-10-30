@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/models/waypoint';
+export { default } from '@atomizedev/fleetops-data/models/waypoint';

@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 import { getOwner } from '@ember/application';
 import { isArray } from '@ember/array';
 import { format as formatDate, formatDistanceToNow } from 'date-fns';
-import isModel from '@fleetbase/ember-core/utils/is-model';
+import isModel from '@atomizedev/ember-core/utils/is-model';
 
 export default class ServiceRate extends Model {
     /** @ids */

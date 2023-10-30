@@ -2,8 +2,8 @@ import Model, { attr, belongsTo } from '@ember-data/model';
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import { format as formatDate, isValid as isValidDate, formatDistanceToNow } from 'date-fns';
-import getWithDefault from '@fleetbase/ember-core/utils/get-with-default';
-import first from '@fleetbase/ember-core/utils/first';
+import getWithDefault from '@atomizedev/ember-core/utils/get-with-default';
+import first from '@atomizedev/ember-core/utils/first';
 
 export default class ZoneModel extends Model {
     /** @ids */

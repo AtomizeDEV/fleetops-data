@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/utils/geojson/closed-polygon';
+export { default } from '@atomizedev/fleetops-data/utils/geojson/closed-polygon';

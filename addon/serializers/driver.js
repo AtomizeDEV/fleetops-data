@@ -1,4 +1,4 @@
-import ApplicationSerializer from '@fleetbase/ember-core/serializers/application';
+import ApplicationSerializer from '@atomizedev/ember-core/serializers/application';
 import { EmbeddedRecordsMixin } from '@ember-data/serializer/rest';
 import { get } from '@ember/object';
 import { isArray } from '@ember/array';

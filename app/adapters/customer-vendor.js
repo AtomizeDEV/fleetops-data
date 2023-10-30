@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/adapters/customer-vendor';
+export { default } from '@atomizedev/fleetops-data/adapters/customer-vendor';

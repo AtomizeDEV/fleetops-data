@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/serializers/service-rate-fee';
+export { default } from '@atomizedev/fleetops-data/serializers/service-rate-fee';

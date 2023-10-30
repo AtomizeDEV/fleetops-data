@@ -1,5 +1,5 @@
 {
-    "name": "@fleetbase/fleetops-data",
+    "name": "@atomizedev/fleetops-data",
     "version": "0.0.7",
     "description": "Fleetbase Fleet-Ops based models, serializers, transforms, adapters and GeoJson utility functions.",
     "keywords": [
@@ -42,7 +42,7 @@
         "@ember/optional-features": "^2.0.0",
         "@ember/test-helpers": "^2.8.1",
         "@embroider/test-setup": "^1.8.3",
-        "@fleetbase/ember-core": "git@github.com/AtomizeDEV/ember-core.git", 
+        "@atomizedev/ember-core": "git@github.com/AtomizeDEV/ember-core.git", 
         "@glimmer/component": "^1.1.2",
         "@glimmer/tracking": "^1.1.2",
         "babel-eslint": "^10.1.0",

@@ -2,7 +2,7 @@ import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { get, computed } from '@ember/object';
 import { format as formatDate, isValid as isValidDate, formatDistanceToNow } from 'date-fns';
 import { getOwner } from '@ember/application';
-import isRelationMissing from '@fleetbase/ember-core/utils/is-relation-missing';
+import isRelationMissing from '@atomizedev/ember-core/utils/is-relation-missing';
 import config from 'ember-get-config';
 
 export default class VehicleModel extends Model {

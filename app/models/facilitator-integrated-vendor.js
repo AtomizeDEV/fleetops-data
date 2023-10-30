@@ -1,1 +1,1 @@
-export { default } from '@fleetbase/fleetops-data/models/facilitator-integrated-vendor';
+export { default } from '@atomizedev/fleetops-data/models/facilitator-integrated-vendor';

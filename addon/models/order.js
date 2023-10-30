@@ -6,8 +6,8 @@ import { isArray } from '@ember/array';
 import { isBlank } from '@ember/utils';
 import { getOwner } from '@ember/application';
 import { format as formatDate, formatDistanceToNow, isValid as isValidDate } from 'date-fns';
-import groupBy from '@fleetbase/ember-core/utils/macros/group-by';
-import isNotModel from '@fleetbase/ember-core/utils/is-not-model';
+import groupBy from '@atomizedev/ember-core/utils/macros/group-by';
+import isNotModel from '@atomizedev/ember-core/utils/is-not-model';
 
 export default class OrderModel extends Model {
     /** @ids */
