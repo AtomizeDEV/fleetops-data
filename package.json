@@ -10,7 +10,7 @@
         "ember-addon",
         "ember-engine"
     ],
-    "repository": "https://github.com/fleetbase/fleetops-data",
+    "repository": "https://github.com/atomizedev/fleetops-data",
     "license": "MIT",
     "author": "Fleetbase Pte Ltd <hello@fleetbase.io>",
     "directories": {
