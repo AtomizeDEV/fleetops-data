@@ -47,6 +47,10 @@ export default class DriverModel extends Model {
     vehicle_avatar;
     @attr('string') vendor_name;
     @attr('string') drivers_license_number;
+    @attr('string', {
+        defaultValue: get(config, 'defaultValues.driverAvatar'),
+    }) avatar_url;
+    @attr('string') avatar_value;
     @attr('point') location;
     @attr('number') heading;
     @attr('string') country;

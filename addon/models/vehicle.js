@@ -31,6 +31,7 @@ export default class VehicleModel extends Model {
         defaultValue: get(config, 'defaultValues.vehicleAvatar'),
     })
     avatar_url;
+    @attr('string') avatar_value;
     @attr('point') location;
     @attr('string') make;
     @attr('string') model;

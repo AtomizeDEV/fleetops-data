@@ -4,6 +4,7 @@ import { computed, get } from '@ember/object';
 import { not } from '@ember/object/computed';
 import { format as formatDate, isValid as isValidDate, formatDistanceToNow } from 'date-fns';
 import isValidCoordinates from '@atomizedev/ember-core/utils/is-valid-coordinates';
+import config from 'ember-get-config';
 
 export default class PlaceModel extends Model {
     /** @ids */
@@ -15,6 +16,10 @@ export default class PlaceModel extends Model {
     @attr('string') name;
     @attr('string') phone;
     @attr('string') type;
+    @attr('string', {
+        defaultValue: get(config, 'defaultValues.placeAvatar'),
+    }) avatar_url;
+    @attr('string') avatar_value;
     @attr('string') address;
     @attr('string') address_html;
     @attr('string') street1;
