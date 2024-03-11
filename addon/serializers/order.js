@@ -10,6 +10,7 @@ export default class OrderSerializer extends ApplicationSerializer.extend(Embedd
      */
     get attrs() {
         return {
+            order_config: { embedded: 'always' },
             payload: { embedded: 'always' },
             driver_assigned: { embedded: 'always' },
             facilitator: { embedded: 'always' },
@@ -21,6 +22,7 @@ export default class OrderSerializer extends ApplicationSerializer.extend(Embedd
             tracking_statuses: { embedded: 'always' },
             files: { embedded: 'always' },
             comments: { embedded: 'always' },
+            custom_field_values: { embedded: 'always' },
         };
     }
 
@@ -35,7 +37,6 @@ export default class OrderSerializer extends ApplicationSerializer.extend(Embedd
         const json = super.serialize(snapshot, options);
         const unshiftAttributes = [
             'order_config',
-            'order_config_uuid',
             'driver_name',
             'tracking',
             'total_entities',

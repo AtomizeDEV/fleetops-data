@@ -6,7 +6,6 @@ import { isArray } from '@ember/array';
 import { isBlank } from '@ember/utils';
 import { getOwner } from '@ember/application';
 import { format as formatDate, formatDistanceToNow, isValid as isValidDate } from 'date-fns';
-import groupBy from '@atomizedev/ember-core/utils/macros/group-by';
 import isNotModel from '@atomizedev/ember-core/utils/is-not-model';
 
 export default class OrderModel extends Model {
@@ -23,12 +22,14 @@ export default class OrderModel extends Model {
     @attr('string') tracking_number_uuid;
     @attr('string') driver_assigned_uuid;
     @attr('string') service_quote_uuid;
+    @attr('string') order_config_uuid;
     @attr('string') payload_id;
     @attr('string') purchase_rate_id;
     @attr('string') driver_id;
 
     /** @relationships */
     @belongsTo('company') company;
+    @belongsTo('order-config') order_config;
     @belongsTo('customer', { polymorphic: true, async: false }) customer;
     @belongsTo('facilitator', { polymorphic: true, async: false }) facilitator;
     @belongsTo('transaction', { async: false }) transaction;
@@ -37,10 +38,10 @@ export default class OrderModel extends Model {
     @belongsTo('route', { async: false }) route;
     @belongsTo('purchase-rate', { async: false }) purchase_rate;
     @belongsTo('tracking-number', { async: false }) tracking_number;
-    @belongsTo('order-config', { async: false }) order_config;
     @hasMany('tracking-status', { async: false }) tracking_statuses;
     @hasMany('comment', { async: false }) comments;
     @hasMany('file', { async: false }) files;
+    @hasMany('custom-field-value', { async: false }) custom_field_values;
 
     /** @aliases */
     @alias('driver_assigned') driver;
@@ -101,8 +102,6 @@ export default class OrderModel extends Model {
     @not('hasPayload') missing_payload;
     @bool('dispatched') isDispatched;
     @not('dispatched') isNotDispatched;
-    @equal('type', 'storefront') isStorefrontOrder;
-    @groupBy('order_config.meta.fields', 'group') groupedMetaFields;
 
     @computed('payload.{pickup.name,current_waypoint_uui,waypoints.@each.name}')
     get pickupName() {
@@ -170,7 +169,7 @@ export default class OrderModel extends Model {
             return null;
         }
 
-        return formatDate(this.updated_at, 'PP');
+        return formatDate(this.updated_at, 'dd, MMM');
     }
 
     @computed('created_at') get createdAgo() {
@@ -194,7 +193,7 @@ export default class OrderModel extends Model {
             return null;
         }
 
-        return formatDate(this.created_at, 'PP');
+        return formatDate(this.created_at, 'dd, MMM');
     }
 
     @computed('created_at') get createdAtWithTime() {
@@ -226,7 +225,7 @@ export default class OrderModel extends Model {
             return null;
         }
 
-        return formatDate(this.dispatched_at, 'PP  HH:mm');
+        return formatDate(this.dispatched_at, 'PP HH:mm');
     }
 
     @computed('dispatched_at') get dispatchedAtShort() {
@@ -234,7 +233,7 @@ export default class OrderModel extends Model {
             return null;
         }
 
-        return formatDate(this.dispatched_at, 'PP');
+        return formatDate(this.dispatched_at, 'dd, MMM');
     }
 
     @computed('started_at') get startedAgo() {
@@ -258,7 +257,7 @@ export default class OrderModel extends Model {
             return null;
         }
 
-        return formatDate(this.started_at, 'PP');
+        return formatDate(this.started_at, 'dd, MMM');
     }
 
     @computed('scheduled_at') get scheduledAt() {
@@ -411,6 +410,26 @@ export default class OrderModel extends Model {
         return this;
     }
 
+    async persistProperty(key, value, options = {}) {
+        return this.persistProperties({ [key]: value }, options);
+    }
+
+    async persistProperties(properties = {}, options = {}) {
+        const owner = getOwner(this);
+        const fetch = owner.lookup('service:fetch');
+
+        this.setProperties(properties);
+        if (typeof options.onBefore === 'function') {
+            options.onBefore(this);
+        }
+
+        return fetch.put(`orders/${this.id}`, properties, { normalizeToEmberData: true, normalizeModelType: 'order' }).then((order) => {
+            if (typeof options.onAfter === 'function') {
+                options.onAfter(order);
+            }
+        });
+    }
+
     async loadPayload(options = {}) {
         const owner = getOwner(this);
         const store = owner.lookup('service:store');
@@ -465,18 +484,16 @@ export default class OrderModel extends Model {
 
     async loadOrderConfig(options = {}) {
         const owner = getOwner(this);
-        const fetch = owner.lookup('service:fetch');
+        const store = owner.lookup('service:store');
 
-        if (!isBlank(this.order_config)) {
+        if (!this.order_config_uuid || !isBlank(this.order_config)) {
             return;
         }
 
-        return fetch
-            .get('fleet-ops/order-configs/get-installed', { key: this.type ?? 'default', single: true }, { normalizeToEmberData: true, normalizeModelType: 'order-config', ...options })
-            .then((orderConfig) => {
-                this.set('order_config', orderConfig);
-                return orderConfig;
-            });
+        return store.findRecord('order-config', this.order_config_uuid, options).then((orderConfig) => {
+            this.set('order_config', orderConfig);
+            return orderConfig;
+        });
     }
 
     async loadDriver(options = {}) {

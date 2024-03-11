@@ -39,7 +39,7 @@ export default class ServiceRateFeeModel extends Model {
         if (!isValidDate(this.updated_at)) {
             return null;
         }
-        return formatDate(this.updated_at, 'PP');
+        return formatDate(this.updated_at, 'dd, MMM');
     }
 
     @computed('created_at') get createdAgo() {
@@ -60,7 +60,7 @@ export default class ServiceRateFeeModel extends Model {
         if (!isValidDate(this.created_at)) {
             return null;
         }
-        return formatDate(this.created_at, 'PP');
+        return formatDate(this.created_at, 'dd, MMM');
     }
 
     /** @methods */

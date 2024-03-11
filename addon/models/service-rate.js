@@ -57,7 +57,7 @@ export default class ServiceRate extends Model {
     }
 
     @computed('updated_at') get updatedAtShort() {
-        return formatDate(this.updated_at, 'PP');
+        return formatDate(this.updated_at, 'dd, MMM');
     }
 
     @computed('created_at') get createdAgo() {
@@ -69,7 +69,7 @@ export default class ServiceRate extends Model {
     }
 
     @computed('created_at') get createdAtShort() {
-        return this.created_at ? formatDate(this.created_at, 'PP') : null;
+        return this.created_at ? formatDate(this.created_at, 'dd, MMM') : null;
     }
 
     @computed('rate_calculation_method') get isFixedMeter() {
