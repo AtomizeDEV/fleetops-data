@@ -4,6 +4,7 @@ import { format as formatDate, formatDistanceToNow, isValid as isValidDate } fro
 
 export default class OrderConfigModel extends Model {
     /** @ids */
+    @attr('string') public_id;
     @attr('string') company_uuid;
     @attr('string') author_uuid;
     @attr('string') category_uuid;

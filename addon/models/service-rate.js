@@ -11,6 +11,7 @@ export default class ServiceRate extends Model {
     @attr('string') company_uuid;
     @attr('string') service_area_uuid;
     @attr('string') zone_uuid;
+    @attr('string') order_config_uuid;
 
     /** @relationships */
     @hasMany('service-rate-fee') rate_fees;
